@@ -1,0 +1,585 @@
+{
+  "openapi": "3.0.1",
+  "info": {
+    "title": "OpenFDA API",
+    "description": "OpenFDA is an Elasticsearch-based API that serves public FDA data about nouns like drugs, devices, and foods. Each of these nouns has one or more categories, which serve unique data-such as data about recall enforcement reports, or about adverse events. Every query to the API must go through one endpoint for one kind of data.",
+    "version": "1.0.0"
+  },
+  "servers": [
+    {
+      "url": "https://api.fda.gov/"
+    }
+  ],
+  "paths": {
+    "/drug/enforcement.json": {
+      "get": {
+        "summary": "Drugs | Recall Enforcement Reports",
+        "operationId": "drugRecallEnforcementReports",
+        "parameters": [
+          {
+            "name": "limit",
+            "in": "query",
+            "description": "Number of results returned. Maximum 100",
+            "schema": {
+              "type": "integer"
+            }
+          },
+          {
+            "name": "search",
+            "in": "query",
+            "description": "Available fields for search: recalling_firm: classification: status: distribution_pattern: product_description: code_info reason_for_recall: product_quantity: voluntary_mandated: report_date: recall_initiation_date: initial_firm_notification: recall_number: event_id product_type: city: state: country:",
+            "schema": {
+              "type": "string",
+              "default": "state:FL"
+            }
+          },
+          {
+            "name": "count",
+            "in": "query",
+            "description": "Count the number of unique values of a certain field, for all the records that matched the search parameter. By default, the API returns the 1000 most frequent values.",
+            "schema": {
+              "type": "string",
+              "enum": [
+                "event_id",
+                "status",
+                "city",
+                "state",
+                "country",
+                "voluntary_mandated",
+                "initial_firm_notification",
+                "recall_initiation_date"
+              ]
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "content": {}
+          },
+          "400": {
+            "description": "Invalid status value",
+            "content": {}
+          }
+        }
+      }
+    },
+    "/drug/label.json": {
+      "get": {
+        "summary": "Drugs | Product Labeling",
+        "operationId": "drugProductLabeling",
+        "parameters": [
+          {
+            "name": "limit",
+            "in": "query",
+            "description": "Number of results returned. Maximum 100",
+            "schema": {
+              "type": "integer"
+            }
+          },
+          {
+            "name": "search",
+            "in": "query",
+            "schema": {
+              "type": "string",
+              "default": "drug_interactions:caffeine"
+            }
+          },
+          {
+            "name": "count",
+            "in": "query",
+            "description": "Count the number of unique values of a certain field, for all the records that matched the search parameter. By default, the API returns the 1000 most frequent values.",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "content": {}
+          },
+          "400": {
+            "description": "Invalid status value",
+            "content": {}
+          }
+        }
+      }
+    },
+    "/drug/event.json": {
+      "get": {
+        "summary": "Drugs | Adverse Events",
+        "operationId": "drugAdverseEvents",
+        "parameters": [
+          {
+            "name": "limit",
+            "in": "query",
+            "description": "Number of results returned. Maximum 100",
+            "schema": {
+              "type": "integer"
+            }
+          },
+          {
+            "name": "search",
+            "in": "query",
+            "schema": {
+              "type": "string",
+              "default": "patient.drug.openfda.pharm_class_epc:\"nonsteroidal+anti-inflammatory+drug\""
+            }
+          },
+          {
+            "name": "count",
+            "in": "query",
+            "description": "Count the number of unique values of a certain field, for all the records that matched the search parameter. By default, the API returns the 1000 most frequent values.",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "content": {}
+          },
+          "400": {
+            "description": "Invalid status value",
+            "content": {}
+          }
+        }
+      }
+    },
+    "/device/510k.json": {
+      "get": {
+        "summary": "Device | 510(k)",
+        "operationId": "device510K",
+        "parameters": [
+          {
+            "name": "limit",
+            "in": "query",
+            "description": "Number of results returned. Maximum 100",
+            "schema": {
+              "type": "integer"
+            }
+          },
+          {
+            "name": "search",
+            "in": "query",
+            "schema": {
+              "type": "string",
+              "default": "openfda.regulation_number:868.5895"
+            }
+          },
+          {
+            "name": "count",
+            "in": "query",
+            "description": "Count the number of unique values of a certain field, for all the records that matched the search parameter. By default, the API returns the 1000 most frequent values.",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "content": {}
+          },
+          "400": {
+            "description": "Invalid status value",
+            "content": {}
+          }
+        }
+      }
+    },
+    "/device/enforcement.json": {
+      "get": {
+        "summary": "Device | Recall Enforcement Reports",
+        "operationId": "deviceRecallEnforcementReports",
+        "parameters": [
+          {
+            "name": "limit",
+            "in": "query",
+            "description": "Number of results returned. Maximum 100",
+            "schema": {
+              "type": "integer"
+            }
+          },
+          {
+            "name": "search",
+            "in": "query",
+            "schema": {
+              "type": "string",
+              "default": "classification:\"Class+III\""
+            }
+          },
+          {
+            "name": "count",
+            "in": "query",
+            "description": "Count the number of unique values of a certain field, for all the records that matched the search parameter. By default, the API returns the 1000 most frequent values.",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "content": {}
+          },
+          "400": {
+            "description": "Invalid status value",
+            "content": {}
+          }
+        }
+      }
+    },
+    "/device/event.json": {
+      "get": {
+        "summary": "Device | Adverse Events",
+        "operationId": "deviceAdverseEvents",
+        "parameters": [
+          {
+            "name": "limit",
+            "in": "query",
+            "description": "Number of results returned. Maximum 100",
+            "schema": {
+              "type": "integer"
+            }
+          },
+          {
+            "name": "search",
+            "in": "query",
+            "schema": {
+              "type": "string",
+              "default": "device.generic_name:x-ra"
+            }
+          },
+          {
+            "name": "count",
+            "in": "query",
+            "description": "Count the number of unique values of a certain field, for all the records that matched the search parameter. By default, the API returns the 1000 most frequent values.",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "content": {}
+          },
+          "400": {
+            "description": "Invalid status value",
+            "content": {}
+          }
+        }
+      }
+    },
+    "/device/pma.json": {
+      "get": {
+        "summary": "Device | Pre-Market Approval",
+        "operationId": "devicePreMarketApproval",
+        "parameters": [
+          {
+            "name": "limit",
+            "in": "query",
+            "description": "Number of results returned. Maximum 100",
+            "schema": {
+              "type": "integer"
+            }
+          },
+          {
+            "name": "search",
+            "in": "query",
+            "schema": {
+              "type": "string",
+              "default": "product_code:LWP"
+            }
+          },
+          {
+            "name": "count",
+            "in": "query",
+            "description": "Count the number of unique values of a certain field, for all the records that matched the search parameter. By default, the API returns the 1000 most frequent values.",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "content": {}
+          },
+          "400": {
+            "description": "Invalid status value",
+            "content": {}
+          }
+        }
+      }
+    },
+    "/device/recall.json": {
+      "get": {
+        "summary": "Device | Recalls",
+        "operationId": "deviceRecalls",
+        "parameters": [
+          {
+            "name": "limit",
+            "in": "query",
+            "description": "Number of results returned. Maximum 100",
+            "schema": {
+              "type": "integer"
+            }
+          },
+          {
+            "name": "search",
+            "in": "query",
+            "schema": {
+              "type": "string",
+              "default": "product_code:FOZ"
+            }
+          },
+          {
+            "name": "count",
+            "in": "query",
+            "description": "Count the number of unique values of a certain field, for all the records that matched the search parameter. By default, the API returns the 1000 most frequent values.",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "content": {}
+          },
+          "400": {
+            "description": "Invalid status value",
+            "content": {}
+          }
+        }
+      }
+    },
+    "/device/registrationlisting.json": {
+      "get": {
+        "summary": "Device | Registrations And Listings",
+        "operationId": "deviceRegistrationsAndListings",
+        "parameters": [
+          {
+            "name": "limit",
+            "in": "query",
+            "description": "Number of results returned. Maximum 100",
+            "schema": {
+              "type": "integer"
+            }
+          },
+          {
+            "name": "search",
+            "in": "query",
+            "schema": {
+              "type": "string",
+              "default": "products.product_code:HQY"
+            }
+          },
+          {
+            "name": "count",
+            "in": "query",
+            "description": "Count the number of unique values of a certain field, for all the records that matched the search parameter. By default, the API returns the 1000 most frequent values.",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "content": {}
+          },
+          "400": {
+            "description": "Invalid status value",
+            "content": {}
+          }
+        }
+      }
+    },
+    "/device/udi.json": {
+      "get": {
+        "summary": "Device | Unique Device Identifier",
+        "operationId": "deviceUniqueDeviceIdentifier",
+        "parameters": [
+          {
+            "name": "limit",
+            "in": "query",
+            "description": "Number of results returned. Maximum 100",
+            "schema": {
+              "type": "integer"
+            }
+          },
+          {
+            "name": "search",
+            "in": "query",
+            "schema": {
+              "type": "string",
+              "default": "products.product_code:HQY"
+            }
+          },
+          {
+            "name": "count",
+            "in": "query",
+            "description": "Count the number of unique values of a certain field, for all the records that matched the search parameter. By default, the API returns the 1000 most frequent values.",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "content": {}
+          },
+          "400": {
+            "description": "Invalid status value",
+            "content": {}
+          }
+        }
+      }
+    },
+    "/food/enforcement.json": {
+      "get": {
+        "summary": "Device | Recall Enforcement Reports",
+        "operationId": "foodRecallEnforcementReports",
+        "parameters": [
+          {
+            "name": "limit",
+            "in": "query",
+            "description": "Number of results returned. Maximum 100",
+            "schema": {
+              "type": "integer"
+            }
+          },
+          {
+            "name": "search",
+            "in": "query",
+            "schema": {
+              "type": "string",
+              "default": "classification:\"Class+III\""
+            }
+          },
+          {
+            "name": "count",
+            "in": "query",
+            "description": "Count the number of unique values of a certain field, for all the records that matched the search parameter. By default, the API returns the 1000 most frequent values.",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "content": {}
+          },
+          "400": {
+            "description": "Invalid status value",
+            "content": {}
+          }
+        }
+      }
+    },
+    "/food/event.json": {
+      "get": {
+        "summary": "Food | Adverse Report",
+        "operationId": "foodAdverseReport",
+        "parameters": [
+          {
+            "name": "limit",
+            "in": "query",
+            "description": "Number of results returned. Maximum 100",
+            "schema": {
+              "type": "integer"
+            }
+          },
+          {
+            "name": "search",
+            "in": "query",
+            "schema": {
+              "type": "string",
+              "default": "products.industry_code:23"
+            }
+          },
+          {
+            "name": "count",
+            "in": "query",
+            "description": "Count the number of unique values of a certain field, for all the records that matched the search parameter. By default, the API returns the 1000 most frequent values.",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "content": {}
+          },
+          "400": {
+            "description": "Invalid status value",
+            "content": {}
+          }
+        }
+      }
+    },
+    "/other/nsde.json": {
+      "get": {
+        "summary": "NSDE",
+        "operationId": "NSDE",
+        "parameters": [
+          {
+            "name": "limit",
+            "in": "query",
+            "description": "Number of results returned. Maximum 100",
+            "schema": {
+              "type": "integer"
+            }
+          },
+          {
+            "name": "search",
+            "in": "query",
+            "schema": {
+              "type": "string",
+              "default": "package_ndc:\"55700-019-60\""
+            }
+          },
+          {
+            "name": "count",
+            "in": "query",
+            "description": "Count the number of unique values of a certain field, for all the records that matched the search parameter. By default, the API returns the 1000 most frequent values.",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "content": {}
+          },
+          "400": {
+            "description": "Invalid status value",
+            "content": {}
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "parameters": {
+      "Limit": {
+        "name": "limit",
+        "in": "query",
+        "description": "Number of results returned. Maximum 100",
+        "schema": {
+          "type": "integer"
+        }
+      }
+    }
+  },
+  "x-original-swagger-version": "2.0"
+}
