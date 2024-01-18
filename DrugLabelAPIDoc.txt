@@ -22,6 +22,7 @@ substance_name          String            Substance name within the drug
 dosage_form            String              Dosage form of the drug
 product_type           String              Type of the drug product
 effective_time         Date Range      Effective time range for the drug
+_exists_               Modifier         Searches for records containing a specific field
 
 Examples of Search Queries:
 
@@ -96,6 +97,17 @@ Each example includes the full URL constructed from the base URL, the search que
   Example Query: "Can I see up to 5 labels for drugs named Aspirin?"
   Full URL: https://api.fda.gov/drug/label.json?search=openfda.brand_name:"aspirin"&limit=5
   Description: This query will return up to 5 drug labels for drugs with the brand name “Aspirin”.
+
+- Product labeling record with a Boxed Warning:
+  Example Query: "Show me a product labeling record that has a Boxed Warning."
+  Full URL: https://api.fda.gov/drug/label.json?search=_exists_:boxed_warning
+  Description: This query searches for labels with a Boxed Warning, and returns one result. The _exists_ search modifier lets you search for records that contain a specific field, no matter what its contents are.
+
+- Example using _exists_ to search for adverse effects in a specific brand:
+  Example Query: "List down some adverse reactions for Cetirizine"
+  Full URL: https://api.fda.gov/drug/label.json?search=openfda.brand_name:%22Cetirizine%22+AND+_exists_:adverse_reactions
+  Description: This query uses the _exists_ modifier to search for all records of brand 'Cetirizine' that have a field for adverse_reactions.
+
 
 Please note that these are just examples, and actual queries might need to be adjusted based on specific requirements. Also, the OpenFDA API has rate limits, so if you're planning to make a lot of requests, consider this.
 
