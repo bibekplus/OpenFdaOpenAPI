@@ -2,11 +2,12 @@ BASE URL: https://api.fda.gov/drug/label.json
 
 API Documentation:
 
-The API endpoint /drug/label.json accepts a search query and responds with a JSON of drug labels. All URL parameters are listed below:
+The API endpoint /drug/label.json accepts a search query and responds with a JSON of drug labels. 
+All URL parameters are listed below:
 
 Parameter            Format         Required     Default     Description
 search               String         Yes                     Search query for drug labels
-limit                Integer        No           1           Limit the number of results returned. This parameter specifies the maximum number of results to display per page. The default value is 1, and the maximum value is 100.
+limit                Integer        No           1           Limit the number of results returned
 
 Search Parameter Definition:
 
@@ -24,65 +25,78 @@ effective_time         Date Range      Effective time range for the drug
 
 Examples of Search Queries:
 
-Each example includes the full URL constructed from the base URL and the search query.
+Each example includes the full URL constructed from the base URL, the search query, and an example user query.
 
 - Search for a specific drug:
+  Example Query: "What are the details of drugs named Aspirin?"
   Full URL: https://api.fda.gov/drug/label.json?search=openfda.brand_name:"aspirin"
-  This query will return drug labels for drugs with the brand name “aspirin”.
+  Description: Returns drug labels for drugs with the brand name “Aspirin”.
 
 - Search for a specific active ingredient:
+  Example Query: "Show me labels for drugs that contain Acetaminophen."
   Full URL: https://api.fda.gov/drug/label.json?search=openfda.generic_name:"acetaminophen"
-  This query will return drug labels for drugs with the active ingredient “acetaminophen”.
+  Description: Retrieves drug labels for drugs containing “Acetaminophen” as an active ingredient.
 
 - Search for a specific manufacturer:
+  Example Query: "Can I see drug labels made by Pfizer?"
   Full URL: https://api.fda.gov/drug/label.json?search=openfda.manufacturer_name:"pfizer"
-  This query will return drug labels for drugs manufactured by “Pfizer”.
+  Description: Fetches drug labels for drugs manufactured by “Pfizer”.
 
 - Search for a specific application number:
+  Example Query: "Find information on drugs with the application number NDA019516."
   Full URL: https://api.fda.gov/drug/label.json?search=openfda.application_number:"NDA019516"
-  This query will return drug labels for drugs with the application number “NDA019516”.
+  Description: Finds drug labels for drugs with the application number “NDA019516”.
 
 - Search for a specific drug with a specific manufacturer:
+  Example Query: "What Aspirin drugs are manufactured by Bayer?"
   Full URL: https://api.fda.gov/drug/label.json?search=openfda.brand_name:"aspirin"+AND+openfda.manufacturer_name:"bayer"
-  This query will return drug labels for drugs with the brand name “aspirin” that are manufactured by “Bayer”.
+  Description: Returns drug labels for drugs with the brand name “Aspirin” that are manufactured by “Bayer”.
 
 - Search for a specific active ingredient with a specific route:
+  Example Query: "List oral drugs that contain Acetaminophen."
   Full URL: https://api.fda.gov/drug/label.json?search=openfda.generic_name:"acetaminophen"+AND+openfda.route:"oral"
-  This query will return drug labels for drugs with the active ingredient “acetaminophen” that are administered orally.
+  Description: Retrieves drug labels for drugs with the active ingredient “Acetaminophen” that are administered orally.
 
 - Search for a specific manufacturer with a specific application number:
+  Example Query: "Do you have any Pfizer drugs with the application number NDA019516?"
   Full URL: https://api.fda.gov/drug/label.json?search=openfda.manufacturer_name:"pfizer"+AND+openfda.application_number:"NDA019516"
-  This query will return drug labels for drugs manufactured by “Pfizer” with the application number “NDA019516”.
+  Description: Retrieves drug labels for drugs manufactured by “Pfizer” with the application number “NDA019516”.
 
 - Search for a specific drug with a specific active ingredient and a specific manufacturer:
+  Example Query: "Show me Tylenol drugs with Acetaminophen made by Johnson & Johnson."
   Full URL: https://api.fda.gov/drug/label.json?search=openfda.brand_name:"tylenol"+AND+openfda.generic_name:"acetaminophen"+AND+openfda.manufacturer_name:"johnson"
-  This query will return drug labels for drugs with the brand name “Tylenol”, the active ingredient “acetaminophen”, and manufactured by “Johnson”.
+  Description: Retrieves up to 3 drug labels for "Tylenol" containing "Acetaminophen" and manufactured by "Johnson & Johnson".
 
 - Search for a specific drug with a specific substance name:
+  Example Query: "Find Advil drugs that contain Ibuprofen."
   Full URL: https://api.fda.gov/drug/label.json?search=openfda.brand_name:"advil"+AND+substance_name:"ibuprofen"
-  This query will return drug labels for drugs with the brand name “Advil” that contain the substance “Ibuprofen”.
+  Description: Retrieves drug labels for drugs containing “Ibuprofen”.
 
 - Search for a specific drug with a specific route:
+  Example Query: "Can you find oral Tylenol drugs?"
   Full URL: https://api.fda.gov/drug/label.json?search=openfda.brand_name:"tylenol"+AND+openfda.route:"oral"
-  This query will return drug labels for drugs with the brand name “Tylenol” that are administered orally.
+  Description: Fetches drug labels for drugs that have an oral dosage form.
 
 - Search for a specific drug with a specific dosage form:
+  Example Query: "Are there any Advil drugs in tablet form?"
   Full URL: https://api.fda.gov/drug/label.json?search=openfda.brand_name:"advil"+AND+dosage_form:"tablet"
-  This query will return drug labels for drugs with the brand name “Advil” that are in tablet form.
+  Description: Retrieves up to 2 drug labels for drugs containing "Caffeine" in tablet form.
 
 - Search for a specific drug with a specific product type:
+  Example Query: "Show labels for Tylenol classified as HUMAN OTC DRUG."
   Full URL: https://api.fda.gov/drug/label.json?search=openfda.brand_name:"tylenol"+AND+product_type:"HUMAN OTC DRUG"
-  This query will return drug labels for drugs with the brand name “Tylenol” that are classified as "HUMAN OTC DRUG".
+  Description: Returns labels for drugs that are classified as "HUMAN OTC DRUG".
 
 - Search for a specific drug with a specific effective time range:
+  Example Query: "What Tylenol labels were updated in 2014?"
   Full URL: https://api.fda.gov/drug/label.json?search=openfda.brand_name:"tylenol"+AND+effective_time:[20140101+TO+20141231]
-  This query will return drug labels for drugs with the brand name “Tylenol” that had an effective time between January 1, 2014, and December 31, 2014. Please note that the date format is YYYYMMDD, and the date range is specified using brackets [] and the TO keyword.
+  Description: Retrieves drug labels updated between January 1, 2020, and December 31, 2020.
 
 - Search for a specific drug with a limit of 5 results:
+  Example Query: "Can I see up to 5 labels for drugs named Aspirin?"
   Full URL: https://api.fda.gov/drug/label.json?search=openfda.brand_name:"aspirin"&limit=5
-  This query will return up to 5 drug labels for drugs with the brand name “aspirin”.
-  Please note that the "limit" parameter allows you to control the number of results returned per page, with a maximum value of 100. You can adjust the limit as needed based on your requirements.
+  Description: This query will return up to 5 drug labels for drugs with the brand name “Aspirin”.
 
-Please note that these are just examples, and the actual queries might need to be adjusted based on specific requirements. Also, the OpenFDA API has rate limits, so if you're planning to make a lot of requests, you might need to consider this.
+Please note that these are just examples, and actual queries might need to be adjusted based on specific requirements. Also, the OpenFDA API has rate limits, so if you're planning to make a lot of requests, consider this.
 
-For more information, you can refer to the OpenFDA API documentation: https://open.fda.gov/apis/drug/label/
+For more information, refer to the OpenFDA API documentation: [https://open.fda.gov/apis/drug/label/](https://open.fda.gov/apis/drug/label/).
