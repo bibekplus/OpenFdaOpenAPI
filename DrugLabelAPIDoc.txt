@@ -105,7 +105,7 @@ Each example includes the full URL constructed from the base URL, the search que
 
 - Example using _exists_ to search for adverse effects in a specific brand:
   Example Query: "List down some adverse reactions for Cetirizine"
-  Full URL: https://api.fda.gov/drug/label.json?search=openfda.brand_name:%22Cetirizine%22+AND+_exists_:adverse_reactions
+  Full URL: https://api.fda.gov/drug/label.json?search=openfda.brand_name:"Cetirizine"+AND+_exists_:adverse_reactions
   Description: This query uses the _exists_ modifier to search for all records of brand 'Cetirizine' that have a field for adverse_reactions.
 
 
